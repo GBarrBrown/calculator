@@ -33,7 +33,7 @@ function getVal(val) {
     temp = "";
     formulaInput("");
     displayInput("");
-  } else if (val === "×" || val === "/" || val === "+" || val === "-") {
+  } else if ((!entries.length == 0) && (val === "×" || val === "/" || val === "+" || val === "-")) {
     // console.log("operator");
     if (temp !== "") {
       entries.push(temp);
