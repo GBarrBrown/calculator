@@ -1,11 +1,20 @@
 
 var entries = [];
 var temp = "";
-
 var output;
-// function dosomething(val) {
-//   console.log("test complete");
-// }
+
+function formulaInput(input) {
+  if (Array.isArray(input)) {
+    document.getElementById("formula").value = input.join("");
+  } else {
+    document.getElementById("display").value = input;
+  }
+}
+
+function displayInput(input) {
+  document.getElementById("display").value = input;
+}
+
 function getVal(val) {
   if (!isNaN(val) || val === '.') {
     if (temp.includes(".") && val == ".") {
@@ -22,56 +31,85 @@ function getVal(val) {
   } else if (val === "C") {
     entries = [];
     temp = "";
-    document.getElementById("formula").value = "";
-    document.getElementById("display").value = "";
-  } else if (val === "×") {
+    formulaInput("");
+    displayInput("");
+  } else if (val === "×" || val === "/" || val === "+" || val === "-") {
+    console.log("operator");
     if (temp !== "") {
       entries.push(temp);
+      temp = "";
     }
-    if (entries[entries.length -1] == "×" || entries[entries.length -1] == "+" || entries[entries.length -1] == "-" || entries[entries.length -1] == "/" ) {
+    var lastEntry = entries[entries.length -1];
+    console.log(lastEntry);
+    if (lastEntry === "×" || lastEntry === "/" || lastEntry === "+" || lastEntry === "-") {
       entries.pop();
-      console.log(entries);
     }
-    entries.push("×");
-    temp = "";
-    document.getElementById("formula").value = ""+entries.join("");
-    document.getElementById("display").value = "×";
-  } else if (val === "/") {
-    if (temp !== "") {
-      entries.push(temp);
-    }
-    if (entries[entries.length -1] == "×" || entries[entries.length -1] == "+" || entries[entries.length -1] == "-" || entries[entries.length -1] == "/" ) {
-      entries.pop();
-      console.log(entries);
-    }
-    entries.push("/");
-    temp = "";
-    document.getElementById("formula").value = ""+entries.join("");
-    document.getElementById("display").value = "/";
-  } else if (val === "+") {
-    if (temp !== "") {
-      entries.push(temp);
-    }
-     if (entries[entries.length -1] == "×" || entries[entries.length -1] == "+" || entries[entries.length -1] == "-" || entries[entries.length -1] == "/" ) {
-      entries.pop();
-      console.log(entries);
-    }
-    entries.push("+");
-    temp = "";
-    document.getElementById("formula").value = ""+entries.join("");
-    document.getElementById("display").value = "+";
-  } else if (val === "-") {
-    if (temp !== "") {
-      entries.push(temp);
-    }
-     if (entries[entries.length -1] == "×" || entries[entries.length -1] == "+" || entries[entries.length -1] == "-" || entries[entries.length -1] == "/" ) {
-      entries.pop();
-      console.log(entries);
-    }
-    entries.push("-");
-    temp = "";
-    document.getElementById("formula").value = ""+entries.join("");
-    document.getElementById("display").value = "-";
+    entries.push(val);
+    formulaInput(entries);
+    displayInput(val);
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  // (val === "×") {
+  //   if (temp !== "") {
+  //     entries.push(temp);
+  //   }
+  //   if (entries[entries.length -1] == "×" || entries[entries.length -1] == "+" || entries[entries.length -1] == "-" || entries[entries.length -1] == "/" ) {
+  //     entries.pop();
+  //     console.log(entries);
+  //   }
+  //   entries.push("×");
+  //   temp = "";
+  //   document.getElementById("formula").value = ""+entries.join("");
+  //   document.getElementById("display").value = "×";
+  // } else if (val === "/") {
+  //   if (temp !== "") {
+  //     entries.push(temp);
+  //   }
+  //   if (entries[entries.length -1] == "×" || entries[entries.length -1] == "+" || entries[entries.length -1] == "-" || entries[entries.length -1] == "/" ) {
+  //     entries.pop();
+  //     console.log(entries);
+  //   }
+  //   entries.push("/");
+  //   temp = "";
+  //   document.getElementById("formula").value = ""+entries.join("");
+  //   document.getElementById("display").value = "/";
+  // } else if (val === "+") {
+  //   if (temp !== "") {
+  //     entries.push(temp);
+  //   }
+  //    if (entries[entries.length -1] == "×" || entries[entries.length -1] == "+" || entries[entries.length -1] == "-" || entries[entries.length -1] == "/" ) {
+  //     entries.pop();
+  //     console.log(entries);
+  //   }
+  //   entries.push("+");
+  //   temp = "";
+  //   document.getElementById("formula").value = ""+entries.join("");
+  //   document.getElementById("display").value = "+";
+  // } else if (val === "-") {
+  //   if (temp !== "") {
+  //     entries.push(temp);
+  //   }
+  //    if (entries[entries.length -1] == "×" || entries[entries.length -1] == "+" || entries[entries.length -1] == "-" || entries[entries.length -1] == "/" ) {
+  //     entries.pop();
+  //     console.log(entries);
+  //   }
+  //   entries.push("-");
+  //   temp = "";
+  //   document.getElementById("formula").value = ""+entries.join("");
+  //   document.getElementById("display").value = "-";
   } else if (val === "=") {
     entries.push(temp);
     temp = "";
