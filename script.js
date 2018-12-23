@@ -1,4 +1,4 @@
-
+/* GBarrBrown */
 var entries = [];
 var temp = "";
 var output;
